@@ -9,6 +9,7 @@ import TaskGroup from './components/TaskGroup';
 import AddTaskForm from './components/AddTaskForm';
 import EditTaskForm from './components/EditTaskForm';
 
+
 type View = 'list' | 'add' | 'edit';
 
 export default function App() {

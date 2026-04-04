@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
-import type { Task, TaskStatus } from '../types/task';
-import { STATUS_LABELS } from '../types/task';
-import TaskItem from './TaskItem';
+import type { Task, TaskStatus } from '../../types/task';
+import { STATUS_LABELS } from '../../types/task';
+import TaskItem from '../TaskItem';
+import * as styles from './styles';
 
 interface TaskGroupProps {
   status: TaskStatus;
@@ -16,27 +17,24 @@ export default function TaskGroup({ status, tasks, onEdit, onDelete, newTaskId }
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <div className="mb-2">
-      {/* Group header */}
+    <div className={styles.wrapper}>
       <button
         onClick={() => setCollapsed((c) => !c)}
-        className="w-full flex items-center justify-between px-4 py-2.5 bg-gray-100 rounded-md hover:bg-gray-150 transition-colors"
+        className={styles.groupHeader}
         aria-expanded={!collapsed}
       >
-        <span className="text-sm text-gray-600 font-medium">
+        <span className={styles.groupLabel}>
           {STATUS_LABELS[status]}{' '}
-          <span className="text-gray-400">({tasks.length})</span>
+          <span className={styles.groupCount}>({tasks.length})</span>
         </span>
-        {collapsed ? (
-          <ChevronDown size={16} className="text-gray-500" />
-        ) : (
-          <ChevronUp size={16} className="text-gray-500" />
-        )}
+        {collapsed
+          ? <ChevronDown size={16} className={styles.chevron} />
+          : <ChevronUp size={16} className={styles.chevron} />
+        }
       </button>
 
-      {/* Task list */}
       {!collapsed && tasks.length > 0 && (
-        <div className="mt-2 animate-collapseDown">
+        <div className={styles.taskList}>
           {tasks.map((task) => (
             <TaskItem
               key={task.id}
@@ -50,9 +48,7 @@ export default function TaskGroup({ status, tasks, onEdit, onDelete, newTaskId }
       )}
 
       {!collapsed && tasks.length === 0 && (
-        <p className="text-center text-gray-400 text-xs py-3 animate-collapseDown">
-          No tasks here
-        </p>
+        <p className={styles.emptyText}>No tasks here</p>
       )}
     </div>
   );
