@@ -1,4 +1,4 @@
-export const wrapper = "relative mx-4 my-3";
+export const wrapper = "relative mb-3";
 
 export const searchIcon = "absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none";
 

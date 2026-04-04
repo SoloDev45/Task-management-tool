@@ -11,16 +11,15 @@
 body {
   font-family: system-ui, -apple-system, sans-serif;
   background-color: #f0f2f5;
-  min-height: 100vh;
+  margin: 0;
   display: flex;
-  align-items: flex-start;
   justify-content: center;
-  padding: 32px 16px;
 }
 
 #root {
   width: 100%;
-  max-width: 380px;
+  max-width: 414px;
+  height: 100vh;
 }
 
 /* Task item delete animation */
@@ -55,6 +54,11 @@ body {
 .group-content.collapsed {
   max-height: 0 !important;
   opacity: 0;
+}
+
+/* Always reserve scrollbar space to prevent layout shift */
+.scrollable {
+  scrollbar-gutter: stable;
 }
 
 /* Custom scrollbar */

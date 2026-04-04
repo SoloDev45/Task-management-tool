@@ -70,10 +70,10 @@ export default function App() {
           <>
             <div className={styles.headerWrapper}>
               <Header title="To-Do App" />
-              <SearchBar value={searchQuery} onChange={setSearchQuery} />
             </div>
 
             <div className={styles.scrollableContent}>
+              <SearchBar value={searchQuery} onChange={setSearchQuery} />
               {ALL_STATUSES.map((status) => (
                 <TaskGroup
                   key={status}
@@ -86,15 +86,13 @@ export default function App() {
               ))}
             </div>
 
-            <div className={styles.fabWrapper}>
-              <button
-                onClick={() => setView('add')}
-                className={styles.fabButton}
-                aria-label="Add new task"
-              >
-                <Plus size={22} strokeWidth={2.5} />
-              </button>
-            </div>
+            <button
+              onClick={() => setView('add')}
+              className={styles.fabButton}
+              aria-label="Add new task"
+            >
+              <Plus size={22} strokeWidth={2.5} />
+            </button>
           </>
         );
     }
