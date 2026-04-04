@@ -8,7 +8,7 @@ import SearchBar from './components/SearchBar';
 import TaskGroup from './components/TaskGroup';
 import AddTaskForm from './components/AddTaskForm';
 import EditTaskForm from './components/EditTaskForm';
-
+import * as styles from './styles';
 
 type View = 'list' | 'add' | 'edit';
 
@@ -42,64 +42,67 @@ export default function App() {
     [updateTask]
   );
 
-  if (view === 'add') {
-    return (
-      <div className="bg-white rounded-xl overflow-hidden shadow-xl h-[calc(100vh-64px)]">
-        <AddTaskForm
-          onAdd={handleAdd}
-          onCancel={() => setView('list')}
-        />
-      </div>
-    );
-  }
+  const renderView = () => {
+    switch (view) {
+      case 'add':
+        return (
+          <AddTaskForm
+            onAdd={handleAdd}
+            onCancel={() => setView('list')}
+          />
+        );
 
-  if (view === 'edit' && editingTask) {
-    return (
-      <div className="bg-white rounded-xl overflow-hidden shadow-xl h-[calc(100vh-64px)]">
-        <EditTaskForm
-          task={editingTask}
-          onUpdate={handleUpdate}
-          onCancel={() => {
-            setEditingTask(null);
-            setView('list');
-          }}
-        />
-      </div>
-    );
-  }
+      case 'edit':
+        return editingTask ? (
+          <EditTaskForm
+            task={editingTask}
+            onUpdate={handleUpdate}
+            onCancel={() => {
+              setEditingTask(null);
+              setView('list');
+            }}
+          />
+        ) : null;
+
+      case 'list':
+      default:
+        return (
+          <>
+            <div className={styles.headerWrapper}>
+              <Header title="To-Do App" />
+              <SearchBar value={searchQuery} onChange={setSearchQuery} />
+            </div>
+
+            <div className={styles.scrollableContent}>
+              {ALL_STATUSES.map((status) => (
+                <TaskGroup
+                  key={status}
+                  status={status}
+                  tasks={getTasksByStatus(status, searchQuery)}
+                  onEdit={handleEdit}
+                  onDelete={deleteTask}
+                  newTaskId={newTaskId}
+                />
+              ))}
+            </div>
+
+            <div className={styles.fabWrapper}>
+              <button
+                onClick={() => setView('add')}
+                className={styles.fabButton}
+                aria-label="Add new task"
+              >
+                <Plus size={22} strokeWidth={2.5} />
+              </button>
+            </div>
+          </>
+        );
+    }
+  };
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-xl flex flex-col h-[calc(100vh-64px)]">
-      {/* Fixed Header */}
-      <div className="flex-shrink-0">
-        <Header title="To-Do App" />
-        <SearchBar value={searchQuery} onChange={setSearchQuery} />
-      </div>
-
-      {/* Scrollable content */}
-      <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
-        {ALL_STATUSES.map((status) => (
-          <TaskGroup
-            key={status}
-            status={status}
-            tasks={getTasksByStatus(status, searchQuery)}
-            onEdit={handleEdit}
-            onDelete={deleteTask}
-            newTaskId={newTaskId}
-          />
-        ))}
-      </div>
-
-      {/* Fixed Footer FAB */}
-      <div className="flex-shrink-0 flex justify-center pb-6 pt-3 bg-gradient-to-t from-white to-transparent">
-        <button
-          onClick={() => setView('add')}
-          className="w-12 h-12 bg-primary hover:bg-primary-dark text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
-          aria-label="Add new task"
-        >
-          <Plus size={22} strokeWidth={2.5} />
-        </button>
-      </div>
+    <div className={styles.appContainer}>
+      {renderView()}
     </div>
   );
 }
