@@ -31,7 +31,28 @@ Tasks are saved in the browser's local storage, so they persist across page relo
 
 ## Run Locally
 
+1. Clone the repo
+
+```bash
+git clone https://github.com/SoloDev45/Task-management-tool.git
+```
+
+2. Navigate into the folder
+
+```bash
+cd Task-management-tool
+```
+
+3. Install dependencies
+
 ```bash
 npm install
+```
+
+4. Start the dev server
+
+```bash
 npm run dev
 ```
+
+5. Open your browser at `http://localhost:5173`
