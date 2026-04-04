@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { Plus } from 'lucide-react';
 import type { Task } from './types/task';
+import type { TaskStatus } from './types/task';
 import { ALL_STATUSES } from './types/task';
 import { useTasks } from './hooks/useTasks';
 import Header from './components/Header';
@@ -18,6 +19,7 @@ export default function App() {
   const [view, setView] = useState<View>('list');
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [filterStatus, setFilterStatus] = useState<TaskStatus | null>(null);
   const [newTaskId, setNewTaskId] = useState<string | null>(null);
 
   const handleAdd = useCallback(
@@ -73,8 +75,13 @@ export default function App() {
             </div>
 
             <div className={styles.scrollableContent}>
-              <SearchBar value={searchQuery} onChange={setSearchQuery} />
-              {ALL_STATUSES.map((status) => (
+              <SearchBar
+                value={searchQuery}
+                onChange={setSearchQuery}
+                filterStatus={filterStatus}
+                onFilterChange={setFilterStatus}
+              />
+              {ALL_STATUSES.filter((s) => filterStatus === null || s === filterStatus).map((status) => (
                 <TaskGroup
                   key={status}
                   status={status}
