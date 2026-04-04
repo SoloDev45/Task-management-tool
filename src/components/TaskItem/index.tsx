@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Pencil, Trash2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { Task } from '../../types/task';
 import StatusBadge from '../StatusBadge';
 import * as styles from './styles';
@@ -16,6 +17,7 @@ function getInitial(title: string): string {
 }
 
 export default function TaskItem({ task, onEdit, onDelete, animateIn }: TaskItemProps) {
+  const { t } = useTranslation();
   const [isDeleting, setIsDeleting] = useState(false);
 
   const handleDelete = () => {
@@ -47,10 +49,10 @@ export default function TaskItem({ task, onEdit, onDelete, animateIn }: TaskItem
       </div>
 
       <div className={styles.actions}>
-        <button onClick={() => onEdit(task)} className={styles.editButton} aria-label="Edit task">
+        <button onClick={() => onEdit(task)} className={styles.editButton} aria-label={t('taskItem.editLabel')}>
           <Pencil size={14} strokeWidth={2} />
         </button>
-        <button onClick={handleDelete} className={styles.deleteButton} aria-label="Delete task">
+        <button onClick={handleDelete} className={styles.deleteButton} aria-label={t('taskItem.deleteLabel')}>
           <Trash2 size={14} strokeWidth={2} />
         </button>
       </div>

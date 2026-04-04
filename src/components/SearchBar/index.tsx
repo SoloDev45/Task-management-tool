@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Search, X, SlidersHorizontal } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { TaskStatus } from '../../types/task';
-import { STATUS_LABELS, STATUS_COLORS, ALL_STATUSES } from '../../types/task';
+import { STATUS_COLORS, ALL_STATUSES } from '../../types/task';
 import * as styles from './styles';
 
 interface SearchBarProps {
@@ -12,6 +13,7 @@ interface SearchBarProps {
 }
 
 export default function SearchBar({ value, onChange, filterStatus, onFilterChange }: SearchBarProps) {
+  const { t } = useTranslation();
   const [filterOpen, setFilterOpen] = useState(false);
   const filterRef = useRef<HTMLDivElement>(null);
 
@@ -30,14 +32,19 @@ export default function SearchBar({ value, onChange, filterStatus, onFilterChang
     setFilterOpen(false);
   };
 
+  const statusKeys: Record<TaskStatus, string> = {
+    'pending': 'status.pending',
+    'in-progress': 'status.inProgress',
+    'completed': 'status.completed',
+  };
+
   return (
     <div className={styles.wrapper}>
-      {/* Search input */}
       <div className={styles.inputWrapper}>
         <Search size={15} className={styles.searchIcon} />
         <input
           type="text"
-          placeholder="Search To-Do"
+          placeholder={t('search.placeholder')}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           className={styles.input}
@@ -49,7 +56,6 @@ export default function SearchBar({ value, onChange, filterStatus, onFilterChang
         )}
       </div>
 
-      {/* Filter button */}
       <div className="relative" ref={filterRef}>
         <button
           onClick={() => setFilterOpen((o) => !o)}
@@ -60,18 +66,15 @@ export default function SearchBar({ value, onChange, filterStatus, onFilterChang
           {filterStatus && <span className={styles.filterDot} />}
         </button>
 
-        {/* Dropdown */}
         {filterOpen && (
           <div className={styles.dropdown}>
-            {/* All option */}
             <button
               onClick={() => handleSelect(null)}
               className={`${styles.dropdownOption} ${filterStatus === null ? styles.dropdownOptionActive : ''}`}
             >
               <span className={styles.optionDot} style={{ backgroundColor: '#9ca3af' }} />
-              All
+              {t('filter.all')}
             </button>
-
             {ALL_STATUSES.map((s) => (
               <button
                 key={s}
@@ -79,7 +82,7 @@ export default function SearchBar({ value, onChange, filterStatus, onFilterChang
                 className={`${styles.dropdownOption} ${filterStatus === s ? styles.dropdownOptionActive : ''}`}
               >
                 <span className={styles.optionDot} style={{ backgroundColor: STATUS_COLORS[s] }} />
-                {STATUS_LABELS[s]}
+                {t(statusKeys[s])}
               </button>
             ))}
           </div>

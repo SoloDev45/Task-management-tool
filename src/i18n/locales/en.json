@@ -1,0 +1,41 @@
+{
+  "app": {
+    "title": "To-Do App"
+  },
+  "header": {
+    "addTask": "Add Task",
+    "editTask": "Edit Task"
+  },
+  "search": {
+    "placeholder": "Search To-Do"
+  },
+  "filter": {
+    "all": "All"
+  },
+  "status": {
+    "pending": "Pending",
+    "inProgress": "In Progress",
+    "completed": "Completed"
+  },
+  "taskGroup": {
+    "empty": "No tasks here"
+  },
+  "taskItem": {
+    "editLabel": "Edit task",
+    "deleteLabel": "Delete task"
+  },
+  "addForm": {
+    "titlePlaceholder": "Enter the title",
+    "descriptionPlaceholder": "Enter the description",
+    "cancel": "Cancel",
+    "add": "ADD",
+    "titleRequired": "Title is required",
+    "descriptionRequired": "Description is required"
+  },
+  "editForm": {
+    "cancel": "Cancel",
+    "update": "Update",
+    "titleRequired": "Title is required",
+    "descriptionRequired": "Description is required"
+  }
+}

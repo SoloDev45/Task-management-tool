@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Plus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { Task } from './types/task';
 import type { TaskStatus } from './types/task';
 import { ALL_STATUSES } from './types/task';
@@ -14,6 +15,7 @@ import * as styles from './styles';
 type View = 'list' | 'add' | 'edit';
 
 export default function App() {
+  const { t } = useTranslation();
   const { addTask, updateTask, deleteTask, getTasksByStatus } = useTasks();
 
   const [view, setView] = useState<View>('list');
@@ -71,7 +73,7 @@ export default function App() {
         return (
           <>
             <div className={styles.headerWrapper}>
-              <Header title="To-Do App" />
+              <Header title={t('app.title')} />
             </div>
 
             <div className={styles.scrollableContent}>

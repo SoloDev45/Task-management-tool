@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { Task, TaskStatus } from '../../types/task';
-import { STATUS_LABELS } from '../../types/task';
 import TaskItem from '../TaskItem';
 import * as styles from './styles';
 
@@ -13,7 +13,14 @@ interface TaskGroupProps {
   newTaskId?: string | null;
 }
 
+const statusKeys: Record<TaskStatus, string> = {
+  'pending': 'status.pending',
+  'in-progress': 'status.inProgress',
+  'completed': 'status.completed',
+};
+
 export default function TaskGroup({ status, tasks, onEdit, onDelete, newTaskId }: TaskGroupProps) {
+  const { t } = useTranslation();
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -24,7 +31,7 @@ export default function TaskGroup({ status, tasks, onEdit, onDelete, newTaskId }
         aria-expanded={!collapsed}
       >
         <span className={styles.groupLabel}>
-          {STATUS_LABELS[status]}{' '}
+          {t(statusKeys[status])}{' '}
           <span className={styles.groupCount}>({tasks.length})</span>
         </span>
         {collapsed
@@ -48,7 +55,7 @@ export default function TaskGroup({ status, tasks, onEdit, onDelete, newTaskId }
       )}
 
       {!collapsed && tasks.length === 0 && (
-        <p className={styles.emptyText}>No tasks here</p>
+        <p className={styles.emptyText}>{t('taskGroup.empty')}</p>
       )}
     </div>
   );

@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { TaskStatus } from '../../types/task';
-import { STATUS_LABELS, STATUS_COLORS, ALL_STATUSES } from '../../types/task';
+import { STATUS_COLORS, ALL_STATUSES } from '../../types/task';
 import * as styles from './styles';
 
 interface StatusDropdownProps {
@@ -9,7 +10,14 @@ interface StatusDropdownProps {
   onChange: (status: TaskStatus) => void;
 }
 
+const statusKeys: Record<TaskStatus, string> = {
+  'pending': 'status.pending',
+  'in-progress': 'status.inProgress',
+  'completed': 'status.completed',
+};
+
 export default function StatusDropdown({ value, onChange }: StatusDropdownProps) {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -28,7 +36,7 @@ export default function StatusDropdown({ value, onChange }: StatusDropdownProps)
       <button type="button" onClick={() => setOpen((o) => !o)} className={styles.trigger}>
         <span className={styles.triggerInner}>
           <span className={styles.triggerDot} style={{ backgroundColor: STATUS_COLORS[value] }} />
-          <span className={styles.triggerLabel}>{STATUS_LABELS[value]}</span>
+          <span className={styles.triggerLabel}>{t(statusKeys[value])}</span>
         </span>
         {open
           ? <ChevronUp size={16} className={styles.chevron} />
@@ -46,7 +54,7 @@ export default function StatusDropdown({ value, onChange }: StatusDropdownProps)
               className={`${styles.optionBase} ${s === value ? styles.optionActive : ''}`}
             >
               <span className={styles.optionDot} style={{ backgroundColor: STATUS_COLORS[s] }} />
-              <span className={styles.optionLabel}>{STATUS_LABELS[s]}</span>
+              <span className={styles.optionLabel}>{t(statusKeys[s])}</span>
             </button>
           ))}
         </div>

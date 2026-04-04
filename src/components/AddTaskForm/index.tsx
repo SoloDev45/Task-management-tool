@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import Header from '../Header';
 import * as styles from './styles';
 
@@ -8,14 +9,15 @@ interface AddTaskFormProps {
 }
 
 export default function AddTaskForm({ onAdd, onCancel }: AddTaskFormProps) {
+  const { t } = useTranslation();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [errors, setErrors] = useState<{ title?: string; description?: string }>({});
 
   const validate = () => {
     const errs: typeof errors = {};
-    if (!title.trim()) errs.title = 'Title is required';
-    if (!description.trim()) errs.description = 'Description is required';
+    if (!title.trim()) errs.title = t('addForm.titleRequired');
+    if (!description.trim()) errs.description = t('addForm.descriptionRequired');
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -28,14 +30,14 @@ export default function AddTaskForm({ onAdd, onCancel }: AddTaskFormProps) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.headerWrapper}>
-        <Header title="Add Task" onBack={onCancel} />
+        <Header title={t('header.addTask')} onBack={onCancel} />
       </div>
 
       <div className={styles.body}>
         <div>
           <input
             type="text"
-            placeholder="Enter the title"
+            placeholder={t('addForm.titlePlaceholder')}
             value={title}
             onChange={(e) => {
               setTitle(e.target.value);
@@ -48,7 +50,7 @@ export default function AddTaskForm({ onAdd, onCancel }: AddTaskFormProps) {
 
         <div>
           <textarea
-            placeholder="Enter the description"
+            placeholder={t('addForm.descriptionPlaceholder')}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);
@@ -61,8 +63,8 @@ export default function AddTaskForm({ onAdd, onCancel }: AddTaskFormProps) {
         </div>
 
         <div className={styles.actions}>
-          <button type="button" onClick={onCancel} className={styles.cancelButton}>Cancel</button>
-          <button type="button" onClick={handleSubmit} className={styles.submitButton}>ADD</button>
+          <button type="button" onClick={onCancel} className={styles.cancelButton}>{t('addForm.cancel')}</button>
+          <button type="button" onClick={handleSubmit} className={styles.submitButton}>{t('addForm.add')}</button>
         </div>
       </div>
     </div>

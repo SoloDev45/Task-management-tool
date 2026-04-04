@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { Task, TaskStatus } from '../../types/task';
 import Header from '../Header';
 import StatusDropdown from '../StatusDropdown';
@@ -11,6 +12,7 @@ interface EditTaskFormProps {
 }
 
 export default function EditTaskForm({ task, onUpdate, onCancel }: EditTaskFormProps) {
+  const { t } = useTranslation();
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
   const [status, setStatus] = useState<TaskStatus>(task.status);
@@ -18,8 +20,8 @@ export default function EditTaskForm({ task, onUpdate, onCancel }: EditTaskFormP
 
   const validate = () => {
     const errs: typeof errors = {};
-    if (!title.trim()) errs.title = 'Title is required';
-    if (!description.trim()) errs.description = 'Description is required';
+    if (!title.trim()) errs.title = t('editForm.titleRequired');
+    if (!description.trim()) errs.description = t('editForm.descriptionRequired');
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -33,7 +35,7 @@ export default function EditTaskForm({ task, onUpdate, onCancel }: EditTaskFormP
   return (
     <div className={styles.wrapper}>
       <div className={styles.headerWrapper}>
-        <Header title="Edit Task" onBack={onCancel} />
+        <Header title={t('header.editTask')} onBack={onCancel} />
       </div>
 
       <div className={styles.body}>
@@ -66,8 +68,8 @@ export default function EditTaskForm({ task, onUpdate, onCancel }: EditTaskFormP
         <StatusDropdown value={status} onChange={setStatus} />
 
         <div className={styles.actions}>
-          <button type="button" onClick={onCancel} className={styles.cancelButton}>Cancel</button>
-          <button type="button" onClick={handleUpdate} className={styles.submitButton}>Update</button>
+          <button type="button" onClick={onCancel} className={styles.cancelButton}>{t('editForm.cancel')}</button>
+          <button type="button" onClick={handleUpdate} className={styles.submitButton}>{t('editForm.update')}</button>
         </div>
       </div>
     </div>

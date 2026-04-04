@@ -1,0 +1,41 @@
+{
+  "app": {
+    "title": "कार्य सूची"
+  },
+  "header": {
+    "addTask": "कार्य जोड़ें",
+    "editTask": "कार्य संपादित करें"
+  },
+  "search": {
+    "placeholder": "कार्य खोजें"
+  },
+  "filter": {
+    "all": "सभी"
+  },
+  "status": {
+    "pending": "लंबित",
+    "inProgress": "जारी है",
+    "completed": "पूर्ण"
+  },
+  "taskGroup": {
+    "empty": "यहाँ कोई कार्य नहीं है"
+  },
+  "taskItem": {
+    "editLabel": "कार्य संपादित करें",
+    "deleteLabel": "कार्य हटाएं"
+  },
+  "addForm": {
+    "titlePlaceholder": "शीर्षक दर्ज करें",
+    "descriptionPlaceholder": "विवरण दर्ज करें",
+    "cancel": "रद्द करें",
+    "add": "जोड़ें",
+    "titleRequired": "शीर्षक आवश्यक है",
+    "descriptionRequired": "विवरण आवश्यक है"
+  },
+  "editForm": {
+    "cancel": "रद्द करें",
+    "update": "अपडेट करें",
+    "titleRequired": "शीर्षक आवश्यक है",
+    "descriptionRequired": "विवरण आवश्यक है"
+  }
+}
