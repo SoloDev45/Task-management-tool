@@ -30,10 +30,12 @@ export default function EditTaskForm({ task, onUpdate, onCancel }: EditTaskFormP
   };
 
   return (
-    <div className="animate-slideInPage">
-      <Header title="Edit Task" onBack={onCancel} />
+    <div className="animate-slideInPage flex flex-col h-full">
+      <div className="flex-shrink-0">
+        <Header title="Edit Task" onBack={onCancel} />
+      </div>
 
-      <div className="p-4 space-y-3 bg-white min-h-screen">
+      <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-white">
         {/* Title */}
         <div>
           <input

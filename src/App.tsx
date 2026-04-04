@@ -43,7 +43,7 @@ export default function App() {
 
   if (view === 'add') {
     return (
-      <div className="bg-white rounded-xl overflow-hidden shadow-xl">
+      <div className="bg-white rounded-xl overflow-hidden shadow-xl h-[calc(100vh-64px)]">
         <AddTaskForm
           onAdd={handleAdd}
           onCancel={() => setView('list')}
@@ -54,7 +54,7 @@ export default function App() {
 
   if (view === 'edit' && editingTask) {
     return (
-      <div className="bg-white rounded-xl overflow-hidden shadow-xl">
+      <div className="bg-white rounded-xl overflow-hidden shadow-xl h-[calc(100vh-64px)]">
         <EditTaskForm
           task={editingTask}
           onUpdate={handleUpdate}
@@ -68,15 +68,15 @@ export default function App() {
   }
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden shadow-xl">
-      {/* Header */}
-      <Header title="To-Do App" />
+    <div className="bg-white rounded-xl overflow-hidden shadow-xl flex flex-col h-[calc(100vh-64px)]">
+      {/* Fixed Header */}
+      <div className="flex-shrink-0">
+        <Header title="To-Do App" />
+        <SearchBar value={searchQuery} onChange={setSearchQuery} />
+      </div>
 
-      {/* Search */}
-      <SearchBar value={searchQuery} onChange={setSearchQuery} />
-
-      {/* Task groups */}
-      <div className="px-4 pb-24 space-y-2">
+      {/* Scrollable content */}
+      <div className="flex-1 overflow-y-auto px-4 py-2 space-y-2">
         {ALL_STATUSES.map((status) => (
           <TaskGroup
             key={status}
@@ -89,11 +89,11 @@ export default function App() {
         ))}
       </div>
 
-      {/* FAB */}
-      <div className="sticky bottom-0 flex justify-center pb-6 pt-2 bg-gradient-to-t from-white to-transparent pointer-events-none">
+      {/* Fixed Footer FAB */}
+      <div className="flex-shrink-0 flex justify-center pb-6 pt-3 bg-gradient-to-t from-white to-transparent">
         <button
           onClick={() => setView('add')}
-          className="pointer-events-auto w-12 h-12 bg-primary hover:bg-primary-dark text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
+          className="w-12 h-12 bg-primary hover:bg-primary-dark text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-105 active:scale-95"
           aria-label="Add new task"
         >
           <Plus size={22} strokeWidth={2.5} />
