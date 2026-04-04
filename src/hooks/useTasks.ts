@@ -1,5 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import type { Task, TaskStatus } from '../types/task';
+import { useLocalStorage } from './useLocalStorage';
 
 function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
@@ -95,7 +96,7 @@ const SEED_TASKS: Task[] = [
 ];
 
 export function useTasks() {
-  const [tasks, setTasks] = useState<Task[]>(SEED_TASKS);
+  const [tasks, setTasks] = useLocalStorage<Task[]>('todo-tasks', SEED_TASKS);
 
   const addTask = useCallback(
     (title: string, description: string) => {
