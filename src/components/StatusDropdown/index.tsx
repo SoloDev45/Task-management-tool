@@ -11,9 +11,9 @@ interface StatusDropdownProps {
 }
 
 const statusKeys: Record<TaskStatus, string> = {
-  'pending': 'status.pending',
+  pending: 'status.pending',
   'in-progress': 'status.inProgress',
-  'completed': 'status.completed',
+  completed: 'status.completed',
 };
 
 export default function StatusDropdown({ value, onChange }: StatusDropdownProps) {
@@ -38,10 +38,11 @@ export default function StatusDropdown({ value, onChange }: StatusDropdownProps)
           <span className={styles.triggerDot} style={{ backgroundColor: STATUS_COLORS[value] }} />
           <span className={styles.triggerLabel}>{t(statusKeys[value])}</span>
         </span>
-        {open
-          ? <ChevronUp size={16} className={styles.chevron} />
-          : <ChevronDown size={16} className={styles.chevron} />
-        }
+        {open ? (
+          <ChevronUp size={16} className={styles.chevron} />
+        ) : (
+          <ChevronDown size={16} className={styles.chevron} />
+        )}
       </button>
 
       {open && (
@@ -50,7 +51,10 @@ export default function StatusDropdown({ value, onChange }: StatusDropdownProps)
             <button
               key={s}
               type="button"
-              onClick={() => { onChange(s); setOpen(false); }}
+              onClick={() => {
+                onChange(s);
+                setOpen(false);
+              }}
               className={`${styles.optionBase} ${s === value ? styles.optionActive : ''}`}
             >
               <span className={styles.optionDot} style={{ backgroundColor: STATUS_COLORS[s] }} />

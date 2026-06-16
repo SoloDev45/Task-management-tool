@@ -1,8 +1,8 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom'
-import App from './App.tsx'
-import TaskListPage from './pages/TaskListPage.tsx'
-import AddTaskPage from './pages/AddTaskPage.tsx'
-import EditTaskPage from './pages/EditTaskPage.tsx'
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import App from './App.tsx';
+import TaskListPage from './pages/TaskListPage.tsx';
+import AddTaskPage from './pages/AddTaskPage.tsx';
+import EditTaskPage from './pages/EditTaskPage.tsx';
 
 export const router = createBrowserRouter([
   {
@@ -15,4 +15,4 @@ export const router = createBrowserRouter([
       { path: '*', element: <Navigate to="/" replace /> },
     ],
   },
-])
+]);

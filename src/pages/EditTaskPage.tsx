@@ -12,11 +12,5 @@ export default function EditTaskPage() {
   // Deep-linked or stale id with no matching task: send the user home.
   if (!task) return <Navigate to="/" replace />;
 
-  return (
-    <EditTaskForm
-      task={task}
-      onUpdate={updateTask}
-      onCancel={() => navigate('/')}
-    />
-  );
+  return <EditTaskForm task={task} onUpdate={updateTask} onCancel={() => navigate('/')} />;
 }

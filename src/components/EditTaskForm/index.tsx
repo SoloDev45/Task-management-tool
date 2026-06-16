@@ -68,8 +68,12 @@ export default function EditTaskForm({ task, onUpdate, onCancel }: EditTaskFormP
         <StatusDropdown value={status} onChange={setStatus} />
 
         <div className={styles.actions}>
-          <button type="button" onClick={onCancel} className={styles.cancelButton}>{t('editForm.cancel')}</button>
-          <button type="button" onClick={handleUpdate} className={styles.submitButton}>{t('editForm.update')}</button>
+          <button type="button" onClick={onCancel} className={styles.cancelButton}>
+            {t('editForm.cancel')}
+          </button>
+          <button type="button" onClick={handleUpdate} className={styles.submitButton}>
+            {t('editForm.update')}
+          </button>
         </div>
       </div>
     </div>

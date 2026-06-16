@@ -49,10 +49,18 @@ export default function TaskItem({ task, onEdit, onDelete, animateIn }: TaskItem
       </div>
 
       <div className={styles.actions}>
-        <button onClick={() => onEdit(task)} className={styles.editButton} aria-label={t('taskItem.editLabel')}>
+        <button
+          onClick={() => onEdit(task)}
+          className={styles.editButton}
+          aria-label={t('taskItem.editLabel')}
+        >
           <Pencil size={14} strokeWidth={2} />
         </button>
-        <button onClick={handleDelete} className={styles.deleteButton} aria-label={t('taskItem.deleteLabel')}>
+        <button
+          onClick={handleDelete}
+          className={styles.deleteButton}
+          aria-label={t('taskItem.deleteLabel')}
+        >
           <Trash2 size={14} strokeWidth={2} />
         </button>
       </div>

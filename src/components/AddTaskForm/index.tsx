@@ -63,8 +63,12 @@ export default function AddTaskForm({ onAdd, onCancel }: AddTaskFormProps) {
         </div>
 
         <div className={styles.actions}>
-          <button type="button" onClick={onCancel} className={styles.cancelButton}>{t('addForm.cancel')}</button>
-          <button type="button" onClick={handleSubmit} className={styles.submitButton}>{t('addForm.add')}</button>
+          <button type="button" onClick={onCancel} className={styles.cancelButton}>
+            {t('addForm.cancel')}
+          </button>
+          <button type="button" onClick={handleSubmit} className={styles.submitButton}>
+            {t('addForm.add')}
+          </button>
         </div>
       </div>
     </div>

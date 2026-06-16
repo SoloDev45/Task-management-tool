@@ -9,7 +9,10 @@
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   background-color: #f0f2f5;
   margin: 0;
   display: flex;
@@ -48,7 +51,9 @@ body {
 /* Smooth collapse transition */
 .group-content {
   overflow: hidden;
-  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  transition:
+    max-height 0.3s ease-out,
+    opacity 0.3s ease-out;
 }
 
 .group-content.collapsed {

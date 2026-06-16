@@ -14,9 +14,9 @@ interface TaskGroupProps {
 }
 
 const statusKeys: Record<TaskStatus, string> = {
-  'pending': 'status.pending',
+  pending: 'status.pending',
   'in-progress': 'status.inProgress',
-  'completed': 'status.completed',
+  completed: 'status.completed',
 };
 
 export default function TaskGroup({ status, tasks, onEdit, onDelete, newTaskId }: TaskGroupProps) {
@@ -31,13 +31,13 @@ export default function TaskGroup({ status, tasks, onEdit, onDelete, newTaskId }
         aria-expanded={!collapsed}
       >
         <span className={styles.groupLabel}>
-          {t(statusKeys[status])}{' '}
-          <span className={styles.groupCount}>({tasks.length})</span>
+          {t(statusKeys[status])} <span className={styles.groupCount}>({tasks.length})</span>
         </span>
-        {collapsed
-          ? <ChevronDown size={16} className={styles.chevron} />
-          : <ChevronUp size={16} className={styles.chevron} />
-        }
+        {collapsed ? (
+          <ChevronDown size={16} className={styles.chevron} />
+        ) : (
+          <ChevronUp size={16} className={styles.chevron} />
+        )}
       </button>
 
       {!collapsed && tasks.length > 0 && (

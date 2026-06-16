@@ -19,49 +19,56 @@ const SEED_TASKS: Task[] = [
   {
     id: 'seed-1',
     title: 'Fix login page bug',
-    description: 'Users are unable to log in when caps lock is on. Investigate and fix the password validation logic.',
+    description:
+      'Users are unable to log in when caps lock is on. Investigate and fix the password validation logic.',
     status: 'in-progress',
     createdAt: 'Mon 1, April 2026',
   },
   {
     id: 'seed-2',
     title: 'Implement dark mode',
-    description: 'Add a dark mode toggle to the settings page and persist the preference in local storage.',
+    description:
+      'Add a dark mode toggle to the settings page and persist the preference in local storage.',
     status: 'in-progress',
     createdAt: 'Tue 2, April 2026',
   },
   {
     id: 'seed-3',
     title: 'Write API documentation',
-    description: 'Document all REST endpoints using Swagger. Include request/response examples for each route.',
+    description:
+      'Document all REST endpoints using Swagger. Include request/response examples for each route.',
     status: 'pending',
     createdAt: 'Tue 2, April 2026',
   },
   {
     id: 'seed-4',
     title: 'Add email notifications',
-    description: 'Send email alerts to users when a task is assigned to them or its status changes.',
+    description:
+      'Send email alerts to users when a task is assigned to them or its status changes.',
     status: 'pending',
     createdAt: 'Wed 3, April 2026',
   },
   {
     id: 'seed-5',
     title: 'Project scaffolding',
-    description: 'Initialised the React + TypeScript project with Vite, configured Tailwind CSS and ESLint.',
+    description:
+      'Initialised the React + TypeScript project with Vite, configured Tailwind CSS and ESLint.',
     status: 'completed',
     createdAt: 'Sat 29, March 2026',
   },
   {
     id: 'seed-6',
     title: 'User authentication',
-    description: 'Implemented JWT-based login and registration with token refresh and protected routes.',
+    description:
+      'Implemented JWT-based login and registration with token refresh and protected routes.',
     status: 'completed',
     createdAt: 'Sun 30, March 2026',
   },
   {
     id: 'seed-7',
     title: 'Dashboard UI',
-    description: 'Built the main dashboard layout with task summary cards, status filters, and responsive design.',
+    description:
+      'Built the main dashboard layout with task summary cards, status filters, and responsive design.',
     status: 'completed',
     createdAt: 'Mon 31, March 2026',
   },
@@ -87,9 +94,7 @@ export function useTasks() {
 
   const updateTask = useCallback(
     (id: string, updates: Partial<Pick<Task, 'title' | 'description' | 'status'>>) => {
-      setTasks((prev) =>
-        prev.map((t) => (t.id === id ? { ...t, ...updates } : t))
-      );
+      setTasks((prev) => prev.map((t) => (t.id === id ? { ...t, ...updates } : t)));
     },
     [setTasks]
   );
@@ -107,9 +112,7 @@ export function useTasks() {
       return tasks.filter(
         (t) =>
           t.status === status &&
-          (q === '' ||
-            t.title.toLowerCase().includes(q) ||
-            t.description.toLowerCase().includes(q))
+          (q === '' || t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q))
       );
     },
     [tasks]

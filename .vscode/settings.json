@@ -1,0 +1,9 @@
+{
+  // Enable AI (Copilot) suggestions.
+  "github.copilot.enable": {
+    "*": true
+  },
+  // Format on save using Prettier.
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

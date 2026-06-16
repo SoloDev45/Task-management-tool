@@ -8,9 +8,9 @@ interface StatusBadgeProps {
 }
 
 const statusKeys: Record<TaskStatus, string> = {
-  'pending': 'status.pending',
+  pending: 'status.pending',
   'in-progress': 'status.inProgress',
-  'completed': 'status.completed',
+  completed: 'status.completed',
 };
 
 export default function StatusBadge({ status }: StatusBadgeProps) {

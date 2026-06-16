@@ -12,7 +12,12 @@ interface SearchBarProps {
   onFilterChange: (status: TaskStatus | null) => void;
 }
 
-export default function SearchBar({ value, onChange, filterStatus, onFilterChange }: SearchBarProps) {
+export default function SearchBar({
+  value,
+  onChange,
+  filterStatus,
+  onFilterChange,
+}: SearchBarProps) {
   const { t } = useTranslation();
   const [filterOpen, setFilterOpen] = useState(false);
   const filterRef = useRef<HTMLDivElement>(null);
@@ -33,9 +38,9 @@ export default function SearchBar({ value, onChange, filterStatus, onFilterChang
   };
 
   const statusKeys: Record<TaskStatus, string> = {
-    'pending': 'status.pending',
+    pending: 'status.pending',
     'in-progress': 'status.inProgress',
-    'completed': 'status.completed',
+    completed: 'status.completed',
   };
 
   return (
